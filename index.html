@@ -4,8 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-
+    <title>Home | Portfolio</title>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -15,27 +19,46 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
 
 
 </head>
 
 <body>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <canvas id="starfield"></canvas>
     <!-- nav bar -->
     <nav>
-        <div class="left">
-            <a href="/">Faique Zeeyan</a>
-        </div>
-        <div class="right">
-            <a href="https://github.com/settings/profile" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-github"></i>
-                <span>Github</span>
-            </a>
-            <a href="https://youtube.com/@dev_zeeyan?si=G4csAXQYKxhZFA9j" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-youtube"></i>
-                <span>Youtube</span>
-                <a href="https://discord.com/invite/5bvv9zTTP" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-discord"></i>
-                    <span>Discord</span>
+
+
+        <!- navigation -->
+
+
+            <div class="left">
+                <a href="/">Portfolio </a>
+
+            </div>
+            <div class="right">
+                <a href="https://github.com/settings/profile" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-github"></i>
+                    <span>Github</span>
+                </a>
+                <a href="https://youtube.com/@dev_zeeyan?si=G4csAXQYKxhZFA9j" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span>Youtube</span>
+                    <a href="https://discord.com/invite/5bvv9zTTP" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-brands fa-discord"></i>
+                        <span>Discord</span>
+                        <!-- <a href="https://me.developers.google.com/u/me" target="_blank" rel="noopener noreferrer"> -->
+                        <!-- <i class="fa-brands fa-square-google-plus"></i>                     -->
+                        <!-- <span>GoogleDev</span> -->
+
+
+                    </a>
                     <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-linkedin"></i>
                         <span>Linkedin</span>
@@ -48,22 +71,50 @@
                     <i class="fa-solid fa-envelope"></i>
                     <span>Email</span>
                 </a>
+                <div class="game-toggle" id="gameToggle" title="Toggle Game Mode">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <!-- Music toggle -->
+                <div class="music-toggle" id="musicToggle" title="Play music">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <audio id="bgMusic" src="song.mp3" loop></audio>
+
+                <script>
+                    const musicToggle = document.getElementById('musicToggle');
+                    const bgMusic = document.getElementById('bgMusic');
+
+                    musicToggle.addEventListener('click', () => {
+                        if (bgMusic.paused) {
+                            bgMusic.play();
+                            musicToggle.classList.add('playing');
+                        } else {
+                            bgMusic.pause();
+                            musicToggle.classList.remove('playing');
+                        }
+                    });
+                </script>
+
+                <!--Home page 1 -->
 
 
 
-        </div>
+            </div>
     </nav>
     <main>
         <!-- Section 1 - Hero -->
         <section class="hero-section">
             <div class="text">
-                <h2>Hi, I'm Zeeyan 👋</h2>
-                <p>I am a software developer and a student with a strong interest in building modern web applications. I
-                    have experience working with technologies like HTML, CSS, JavaScript, React, and Node.js. I am
+                <h2>Hi, I'm Zeeyan 👋🏻</h2>
+                <p>I am a software developer and a student with a strong interest in building modern web applications.I
+                    am
                     currently focused on improving my skills and actively seeking internship opportunities to gain
                     real-world experience and grow professionally.I am also passionate about learning new technologies
-                    and improving my problem-solving skills through hands-on projects. I enjoy working on both frontend
-                    and backend development and building responsive, user-friendly websites.
+                    and improving my problem-solving skills through hands-on projects.
 
                 </p>
                 <div class="links">
@@ -71,33 +122,47 @@
                         <i class="fa-solid fa-code"></i>
                         <span>Skills</span>
                     </a>
+                    <a href="#projects">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <span>Projects</span>
+                        <a href="#experience">
+                            <i class="fa-solid fa-atom"></i>
+                            <span>Experience</span>
+                        </a>
+
+                    </a>
                     <a href="#testimony">
-                        <i class="fa-solid fa-info"></i>
+                        <i class="fa-brands fa-slack"></i>
                         <span>Testimony</span>
                     </a>
                     <a href="#contact">
                         <i class="fa-solid fa-headset"></i>
                         <span>Contact</span>
                     </a>
+
                 </div>
 
             </div>
             <div class="headshot">
-                <img src="main.jpg.jpeg" alt="Zeeyan">
+                <div class="headshot-inner">
+                    <img src="main.jpg.jpeg" alt="Zeeyan" id="headshotImg">
+                    <canvas id="asciiCanvas"></canvas>
+                </div>
             </div>
         </section>
         <!-- Section 2 - Skills -->
         <section id="skills" class="skills-section">
             <h2>Skills</h2>
             <div class="text">
-                I have skills in web development including HTML, CSS, JavaScript, React, and Node.js. I can build
-                responsive and interactive user interfaces as well as develop basic backend services. I am familiar with
-                version control using Git and enjoy working on full-stack projects that improve my understanding of
-                real-world development workflows.
+                I have skills in web development using which I can build
+                responsive and interactive user interfaces as well as develop basic backend services using java and can
+                also handle databases using MySQL. I am familiar with
+                version control using Github.
 
             </div>
-            <div class="cells">
-                <div class="cell">
+
+            <div class="cells reveal-group">
+                <div class="cell reveal-item">
                     <img src="html-logo.webp" alt="html logo">
                     <span>HTML</span>
                 </div>
@@ -110,14 +175,223 @@
                     <span>JavaScript</span>
                 </div>
                 <div class="cell">
-                    <img src="node-logo.webp" alt="node logo">
-                    <span>Node.js</span>
+                    <img src="./node-logo.webp" alt="node logo">
+                    <span>Nodejs</span>
                 </div>
                 <div class="cell">
-                    <img src="react-logo.webp" alt="react logo">
-                    <span>React.js</span>
+                    <img src="./react-logo.webp" alt="react logo">
+                    <span>React
+                    </span>
                 </div>
 
+            </div>
+        </section>
+
+
+        <!-- Video section -->
+        <section class="work-banner-section">
+
+            <video class="banner-video" muted loop playsinline poster="work-banner-poster.jpg"
+                data-src="work-banner.mp4"></video>
+            <div class="banner-overlay"></div>
+
+            <div class="banner-content reveal">
+                <p class="banner-eyebrow">Featured Work</p>
+                <h2>Building Things That Work,<br>One Project at a Time</h2>
+                <p class="banner-subtext">A closer look at the projects where I've turned ideas into real, working
+                    code.</p>
+            </div>
+        </section>
+        <!-- Section - Projects -->
+        <section id="projects" class="projects-section">
+            <h2>Projects</h2>
+            <div class="text">
+                Here are a few projects I've built while learning full-stack development.
+                Each one helped me sharpen a different part of my skill set, from UI design
+                to working with APIs and backend logic.
+            </div>
+
+            <div class="projects-grid">
+                  <div class="project-card">
+                    <div class="project-image">
+                        <img src="project4.png" alt="Project 1 screenshot">
+                    </div>
+
+                    <div class="project-content">
+                        <h3>Kepler-xvi</h3>
+                        <p>Interactive Gaming store webpage uses gsap for scrolling animation and high quality videos
+                            for increasing user experience
+                        </p>
+                        <div class="tech-tags">
+                            <span>Gsap</span>
+                            <span>Js</span>
+                            <span>Css</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/dev-zeeyan" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github"></i> Code
+                            </a>
+                            <a href="https://awwwards-webpage.vercel.app/" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="projectnew.png" alt="Project 2 screenshot">
+                    </div>
+                    <div class="project-content">
+                        <h3>Z ai's 1st model</h3>
+                        <p>This ai shows the survival of the fittest in this generation , It improves itself after every
+                            failure .
+                        </p>
+                        <div class="tech-tags">
+                            <span>Html</span>
+                            <span>Css</span>
+                            <span>Js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/dev-zeeyan" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github"></i> Code
+                            </a>
+                            <a href="hhttps://z-ai-model-0.vercel.app/" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+              
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="project1.png" alt="Project 2 screenshot">
+                    </div>
+                    <div class="project-content">
+                        <h3>Concept Login page</h3>
+                        <p>The recent famous game 'Valorant' inspired login page which increases overall user acitivy
+                            and satisfaction as they see thier fav agent
+                        </p>
+                        <div class="tech-tags">
+                            <span>Html</span>
+                            <span>Css</span>
+                            <span>Js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/dev-zeeyan" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-github"></i> Code
+                            </a>
+                            <a href="https://login-page-using-only-html-css.vercel.app/" target="_blank"
+                                rel="noopener noreferrer">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+        <!-- Section - Experience -->
+        <section id="experience" class="experience-section">
+
+            <video class="video-bg" muted loop playsinline poster="experience-poster.jpg"
+                data-src="experience-bg.mp4"></video>
+            <div class="video-overlay"></div>
+
+            <div class="experience-content">
+                <h2 class="reveal">Experience</h2>
+                <div class="text reveal">
+                    A collection of certifications and Google Developer badges I've earned while
+                    strengthening my skills in web development and modern dev tools.
+                </div>
+
+                <h3 class="experience-subheading reveal">Certifications</h3>
+                <div class="cert-marquee reveal">
+                    <div class="cert-track" id="certTrack">
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>Google's Premiuim Tier Devloper</h4>
+                            <p>Issuing Platform • Google</p>
+                            <a href="https://me.developers.google.com/u/me" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>Completed Google Antigravity Arcade</h4>
+                            <p>Issuing Platform • Google</p>
+                            <a href="https://developers.google.com/profile/badges/playlists/solutions/antigravity-arcade/quiz?hl=en"
+                                target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>Anthropic's Model Context Protocol</h4>
+                            <p>Issuing Platform • Anthropic</p>
+                            <a href="https://preview--fzhcv.lovable.app/certificates/mcp.pdf" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>DevKeynote Created Multi-agent Systems</h4>
+                            <p>Issuing Platform • Google</p>
+                            <a href="https://developers.google.com/profile/badges/events/cloud/next/2026/codelab/creating-multi-agent-systems?hl=en"
+                                target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>Anthropic's Ai Fluency & Framework</h4>
+                            <p>Issuing Platform • Anthropic</p>
+                            <a href="https://preview--fzhcv.lovable.app/certificates/ai-fluency.pdf" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>Google's Responsive Web Design</h4>
+                            <p>Issuing Platform • Google</p>
+                            <a href="https://me.developers.google.com/u/me" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>Claude Design 101</h4>
+                            <p>Issuing Platform • Anthropic</p>
+                            <a href="https://drive.google.com/file/d/1t1j63NuRoFYtupN65cyad0qDVAfbJhYp/view?usp=sharing"
+                                target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>Toronto Data Cloud Workshop</h4>
+                            <p>Issuing Platform • Google</p>
+                            <a href="https://me.developers.google.com/u/me" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                        <div class="cert-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h4>Core JavaScript Course</h4>
+                            <p>Issuing Platform • Google</p>
+                            <a href="https://me.developers.google.com/u/me" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> View Credential
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </section>
         <!-- Section 3 - Testimony -->
@@ -139,6 +413,7 @@
 
                 </div>
         </section>
+
         <!-- Section 4 - Contact us -->
         <section id="contact" class="contact-section">
             <h2>Contact</h2>
@@ -177,8 +452,10 @@
                 </a>
                 <a href="https://linkedin.com" target="_blank">
                     <i class="fa-brands fa-linkedin"></i>
-
-                    <a href="https://docs.google.com/document/d/1Z7vOqIth4AgquwAYvvBNO9JuNy8tLUeL/edit?usp=sharing&ouid=105141047410822538333&rtpof=true&sd=true"
+                    <a href="https://me.developers.google.com/u/me" target="_blank">
+                        <i class="fa-brands fa-google-plus-g"></i>
+                    </a>
+                    <a href="https://docs.google.com/document/d/1Z7vOqIth4AgUuwAYvvBNO9JuNy8tLUeL/edit?usp=sharing&ouid=105141047410822538333&rtpof=true&sd=true"
                         download>
                         <i class="fa-regular fa-file"></i>
                         <a href="mailto:faiquezeeyan@gmail.com">
@@ -196,7 +473,332 @@
             </div>
         </div>
     </footer>
+    <script>
+        const starCanvas = document.getElementById('starfield');
+        const sctx = starCanvas.getContext('2d');
+        const starsReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        let stars = [];
+        const STAR_COUNT = window.innerWidth < 600 ? 70 : 140;
+        const LINK_DISTANCE = 120;
+
+        function resizeStarfield() {
+            starCanvas.width = window.innerWidth;
+            starCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeStarfield);
+        resizeStarfield();
+
+        function createStars() {
+            stars = [];
+            for (let i = 0; i < STAR_COUNT; i++) {
+                stars.push({
+                    x: Math.random() * starCanvas.width,
+                    y: Math.random() * starCanvas.height,
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.15,
+                    radius: Math.random() * 1.5 + 0.5,
+                    twinkleSpeed: Math.random() * 0.02 + 0.005,
+                    twinklePhase: Math.random() * Math.PI * 2
+                });
+            }
+        }
+        createStars();
+
+        // Reads the current theme's colors (light by default, or the dark
+        // "game mode" theme once toggled) so the starfield always matches.
+        function getThemeRGB(varName, fallback) {
+            const value = getComputedStyle(document.body).getPropertyValue(varName).trim();
+            return value || fallback;
+        }
+
+        function drawStarfield() {
+            sctx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+
+            const starRGB = getThemeRGB('--star-rgb', '27, 36, 54');
+            const linkRGB = getThemeRGB('--accent-rgb', '14, 128, 116');
+
+            stars.forEach(s => {
+                if (!starsReducedMotion) {
+                    s.x += s.vx;
+                    s.y += s.vy;
+
+                    s.twinklePhase += s.twinkleSpeed;
+                }
+
+                const twinkle = starsReducedMotion ? 0.7 : (Math.sin(s.twinklePhase) + 1) / 2;
+                const opacity = 0.3 + twinkle * 0.7;
+
+                sctx.beginPath();
+                sctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+                sctx.fillStyle = `rgba(${starRGB}, ${opacity})`;
+                sctx.fill();
+            });
+
+            for (let i = 0; i < stars.length; i++) {
+                for (let j = i + 1; j < stars.length; j++) {
+                    const dx = stars[i].x - stars[j].x;
+                    const dy = stars[i].y - stars[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < LINK_DISTANCE) {
+                        const opacity = (1 - dist / LINK_DISTANCE) * 0.15;
+                        sctx.beginPath();
+                        sctx.moveTo(stars[i].x, stars[i].y);
+                        sctx.lineTo(stars[j].x, stars[j].y);
+                        sctx.strokeStyle = `rgba(${linkRGB}, ${opacity})`;
+                        sctx.lineWidth = 1;
+                        sctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(drawStarfield);
+        }
+        drawStarfield();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to('#scrollProgress', {
+            width: '100%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: document.body,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: true
+            }
+        });
+
+        ScrollTrigger.create({
+            start: 'top top',
+            end: 99999,
+            onUpdate: (self) => {
+                const navEl = document.querySelector('nav');
+                if (self.direction === 1 && self.scroll() > 150) {
+                    navEl.classList.add('nav-hidden');
+                } else {
+                    navEl.classList.remove('nav-hidden');
+                }
+            }
+        });
+        gsap.to('.hero-section .headshot-inner', {
+            y: 50,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+
+        gsap.utils.toArray('.banner-video, .video-bg').forEach((video) => {
+            gsap.fromTo(video,
+                { y: -50 },
+                {
+                    y: 50,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: video.closest('section'),
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                }
+            );
+        });
+        gsap.utils.toArray('.skills-section h2, .projects-section h2, .testimony-section h2, .contact-section h2, .ai-demand-section h2, .about-section h2').forEach((heading) => {
+            gsap.from(heading, {
+                opacity: 0,
+                y: 30,
+                scale: 0.9,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: heading,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        gsap.from('.project-card', {
+            opacity: 0,
+            y: 50,
+            duration: 0.7,
+            ease: 'power3.out',
+            stagger: 0.15,
+            scrollTrigger: {
+                trigger: '.projects-grid',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    </script>
+    <script>
+        const gameToggle = document.getElementById('gameToggle');
+        const headshotImg = document.getElementById('headshotImg');
+        const canvas = document.getElementById('asciiCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        let mouse = { x: -9999, y: -9999 };
+        let animationId = null;
+
+        const CHARS = "@%#*+=-:. ";
+        const GRID_SIZE = 7;
+        const INFLUENCE_RADIUS = 60;
+        const SCATTER_STRENGTH = 25;
+        const SPRING = 0.12;
+        const FRICTION = 0.82;
+
+        function buildParticles() {
+            const size = headshotImg.clientWidth;
+            canvas.width = size;
+            canvas.height = size;
+
+            const temp = document.createElement('canvas');
+            temp.width = size;
+            temp.height = size;
+            const tempCtx = temp.getContext('2d');
+            tempCtx.drawImage(headshotImg, 0, 0, size, size);
+            const imgData = tempCtx.getImageData(0, 0, size, size).data;
+
+            particles = [];
+            for (let y = 0; y < size; y += GRID_SIZE) {
+                for (let x = 0; x < size; x += GRID_SIZE) {
+                    const cx = x - size / 2;
+                    const cy = y - size / 2;
+                    if (cx * cx + cy * cy > (size / 2) * (size / 2)) continue;
+
+                    const i = (y * size + x) * 4;
+                    const r = imgData[i], g = imgData[i + 1], b = imgData[i + 2];
+                    const brightness = (r + g + b) / 3 / 255;
+                    const charIndex = Math.floor((1 - brightness) * (CHARS.length - 1));
+
+                    particles.push({
+                        homeX: x, homeY: y,
+                        x: x, y: y,
+                        vx: 0, vy: 0,
+                        char: CHARS[charIndex] || ' '
+                    });
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = `${GRID_SIZE}px monospace`;
+            ctx.fillStyle = '#64ffda';
+            ctx.textBaseline = 'middle';
+
+            for (const p of particles) {
+                const dx = p.x - mouse.x;
+                const dy = p.y - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < INFLUENCE_RADIUS) {
+                    const force = (1 - dist / INFLUENCE_RADIUS) * SCATTER_STRENGTH;
+                    const angle = Math.atan2(dy, dx);
+                    p.vx += Math.cos(angle) * force * 0.3;
+                    p.vy += Math.sin(angle) * force * 0.3;
+                }
+
+                p.vx += (p.homeX - p.x) * SPRING;
+                p.vy += (p.homeY - p.y) * SPRING;
+                p.vx *= FRICTION;
+                p.vy *= FRICTION;
+                p.x += p.vx;
+                p.y += p.vy;
+
+                ctx.fillText(p.char, p.x, p.y);
+            }
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            mouse.x = -9999;
+            mouse.y = -9999;
+        });
+
+        gameToggle.addEventListener('click', () => {
+            const turningOn = !document.body.classList.contains('game-mode');
+
+            if (turningOn) {
+                buildParticles();   // measure & read the photo BEFORE hiding it
+            }
+
+            document.body.classList.toggle('game-mode');
+            gameToggle.classList.toggle('active');
+
+            if (turningOn) {
+                if (!animationId) animate();
+            } else {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        });
+    </script>
+    <script>
+        // Scroll reveal via IntersectionObserver
+        const revealEls = document.querySelectorAll('.reveal, .reveal-group');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target); // animate once
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+    </script>
+    <script>
+        // Lazy-load & play/pause background videos only while they're on screen
+        const bgVideos = document.querySelectorAll('video[data-src]');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (bgVideos.length && !prefersReducedMotion) {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        if (!video.src) video.src = video.dataset.src;
+                        video.play().catch(() => { });
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            bgVideos.forEach(video => videoObserver.observe(video));
+        }
+    </script>
+    <script>
+        // Duplicate cert cards so the marquee loops seamlessly, however many cards you add
+        const certTrack = document.getElementById('certTrack');
+        if (certTrack) {
+            Array.from(certTrack.children).forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                certTrack.appendChild(clone);
+            });
+        }
+    </script>
 </body>
 
 </html>
